@@ -1,4 +1,4 @@
-package Algorithm;
+package array;
 
 public class MaxProfit {
 	
