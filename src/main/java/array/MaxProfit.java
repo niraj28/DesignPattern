@@ -1,6 +1,14 @@
 package array;
 
 public class MaxProfit {
+	/*
+	 * 
+	 *Brute Force Approach: We can use two nested loops to check every possible pair of buy and sell days. 
+	 *The outer loop will iterate through the prices array, and the inner loop will check for all subsequent days to calculate the profit. 
+	 *This approach has a time complexity of O(n^2).
+	 *
+	 * Optimal Approach: We can keep track of the minimum price seen so far and calculate the profit at each step.
+	 */
 	
 	public int maxProfit(int[] prices) {
         int minPrice = Integer.MAX_VALUE;
