@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class Anagrams {
 	
@@ -20,45 +22,33 @@ String[] dict = {"cat", "dog", "tac", "god", "act"};
 
 String[] inputWords = {"cat", "bat"};
 
-HashMap<String, ArrayList<Integer>> map = new HashMap<>();
-ArrayList<Integer> list;
-int i = -1;
+Map<String, List<String>> wordMap = new HashMap<>();
 
-for (String str : dict) {
-    char[] s = str.toCharArray();
-    i++;
-    Arrays.sort(s);
 
-    String key = new String(s);
+for(String s : dict) {
+	
 
-    if (map.containsKey(key)) {
-        list = map.get(key);
-        list.add(i);
-    } else {
-        list = new ArrayList<>();
-        list.add(i);
-        map.put(key, list);
-    }
-}
+int[] count = new int[26];
+	
+	for(char c : s.toCharArray()) {
+		count[c-'a']++;
+	}
+	
+	StringBuilder key = new StringBuilder();
+	for(int c: count) {
+		key.append("#").append(c);
+	}
+	
+	if(!wordMap.containsKey(key.toString())) {
+		wordMap.put(key.toString(), new ArrayList<>());
+	}
+	wordMap.get(key.toString()).add(s);
+	
 
-for (String fr : inputWords) {
-    char[] f = fr.toCharArray();
-    Arrays.sort(f);
+		
+	}
 
-    String key = new String(f);
-
-    System.out.print(fr + " -> ");
-
-    if (map.containsKey(key)) {
-        list = map.get(key);
-        ArrayList<String> result = new ArrayList<>();
-        for (int l : list) {
-            result.add(dict[l]);
-        }
-        System.out.println(result);
-    } else {
-        System.out.println("[]");
-    }
-}
+System.out.println( new ArrayList<>(wordMap.values()));
+	
 }
 }

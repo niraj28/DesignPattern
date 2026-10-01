@@ -1,48 +1,84 @@
 
 
 public class Practice {
-/*
- * You are given a string s and an integer k. You can choose any character of the string and change it to any other uppercase English character. You can perform this operation at most k times.
+	/*19. Remove Nth Node From End of List
+			Solved
+			Medium
+			Topics
+			conpanies icon
+			Companies
+			Hint
+			Given the head of a linked list, remove the nth node from the end of the list and return its head.
+			
+			 
+			
+			Example 1:
+			
+			
+			Input: head = [1,2,3,4,5], n = 2
+			Output: [1,2,3,5]
+			Example 2:
+			
+			Input: head = [1], n = 1
+			Output: []
+			Example 3:
+			
+			Input: head = [1,2], n = 1
+			Output: [1]
+			 
+			
+			Constraints:
+			
+			The number of nodes in the list is sz.
+			1 <= sz <= 30
+			0 <= Node.val <= 100
+			1 <= n <= sz
 
-	Return the length of the longest substring containing the same letter you can get after performing the above operations.
+	 * 
+	 */
 	
+	 public ListNode removeNthFromEnd(ListNode head, int n) {
+		 
+
+		    ListNode dummy = new ListNode(0);
+		    dummy.next = head;
+
+		    ListNode slow = dummy;
+		    ListNode fast = dummy;
+		 
+		 for(int i=0; i<=n; i++) {
+			fast= fast.next; 
+		 }
+		 
+		 while(fast!=null) {
+			 slow=slow.next;
+			 fast= fast.next;
+		 }
+		 
+		 slow.next = slow.next.next;
+		 
+		 return  dummy.next;
+	 }
+	 
+	 public static void main(String[] args) {
+		 Practice p = new Practice();
+		 
+		 ListNode head = new ListNode(1);
+		 head.next = new ListNode(2);
+		 head.next.next = new ListNode(3);
+		 head.next.next.next = new ListNode(4);
+		 head.next.next.next.next = new ListNode(5);
+		 
+		 int n = 2;
+		 
+		 ListNode result = p.removeNthFromEnd(head, n);
+		 
+		 while(result!=null) {
+			 System.out.print(result.val + " ");
+			 result = result.next;
+		 }
+	 }
+	 
 	 
 	
-	Example 1:
-	
-	Input: s = "ABAB", k = 2
-	Output: 4
-	Explanation: Replace the two 'A's with two 'B's or vice versa.
-	Example 2:
-	
-	Input: s = "AABABBA", k = 1
-	Output: 4
-	Explanation: Replace the one 'A' in the middle with 'B' and form "AABBBBA".
-	The substring "BBBB" has the longest repeating letters, which is 4.
-	There may exists other ways to achieve this answer too.
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * 
- * Sliding Window + Frequency Count (Greedy) approach.
- * 1. Use a sliding window (left, right)
-   2. Maintain a frequency[] array for characters
-   3.Track maxFrequency (most frequent char in current window)
-   4.Expand window (right++)
-	
-   5.If:
-	
-	(window size - maxFrequency) > k
-	
-	→ shrink window (left++)
-	
-   6.Keep updating maxLength
- * 
- */
-}
+	}
